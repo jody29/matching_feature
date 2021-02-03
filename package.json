@@ -1,0 +1,27 @@
+{
+  "name": "matching_feature",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jody29/matching_feature.git"
+  },
+  "keywords": [
+    "matching",
+    "feature"
+  ],
+  "author": "JodyLorist",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jody29/matching_feature/issues"
+  },
+  "homepage": "https://github.com/jody29/matching_feature#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^17.0.1"
+  }
+}
