@@ -1,11 +1,11 @@
 {
   "name": "matching_feature",
   "version": "1.0.0",
-  "description": "",
+  "description": "Matching Feature Jody Lorist",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"  
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "matching",
     "feature",
     "be_tech",
-    "pt_tech"  
+    "pt_tech"
   ],
   "author": "JodyLorist",
   "license": "ISC",
@@ -27,5 +27,8 @@
     "express": "^4.17.1",
     "mongodb": "^3.6.4",
     "react": "^17.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
