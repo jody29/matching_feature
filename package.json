@@ -2,9 +2,9 @@
   "name": "matching_feature",
   "version": "1.0.0",
   "description": "Matching Feature Jody Lorist",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "start:dev": "nodemon"  
   },
   "repository": {
