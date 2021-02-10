@@ -1,5 +1,32 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background: black;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+
 header nav ul {
     display: flex;
-    flex-direction: row;
-       
+    flex-direction: row; 
+    list-style: none;
+    padding: 1em;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0 1em;
+}
+
+h1 {
+    margin: 1em 1em;
 }
