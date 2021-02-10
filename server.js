@@ -21,6 +21,11 @@ app.get('/profile', function (req, res) {
     res.render('pages/profile')
 })
 
+app.get('*', function (req, res) {
+    res.status(404).render('pages/404')
+})
+
+// Express listens to PORT 8080
 app.listen(PORT, () => {
    console.log(`http://localhost:${PORT}`)
 })
