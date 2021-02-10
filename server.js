@@ -1,16 +1,20 @@
-const http = require('http')
-const fs = require('fs')
+const express = require('express')
+const PORT = 8080
+const app = express()
 
-const hostname = 'localhost'
-const port = 8080
-const index = fs.readFileSync('index.ejs')
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200
-    res.setHeader('Content-Type', 'text/html')
-    res.end(index)
+app.set('view engine', 'ejs')
+
+// index page
+app.get('/', function (req, res) {
+    res.render('pages/index')
 })
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}`)
+// Profile page
+app.get('/profile', function (req, res) {
+    res.render('pages/profile')
+})
+
+app.listen(PORT, () => {
+   console.log(`http://localhost:${PORT}`)
 })
