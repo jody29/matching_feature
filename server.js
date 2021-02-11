@@ -13,12 +13,12 @@ app.use(express.static(__dirname + '/public'))
 
 // index page
 app.get('/', function (req, res) {
-    res.render('pages/index')
+    res.render('pages/index', {title: 'Home'})
 })
 
 // Profile page
 app.get('/profile', function (req, res) {
-    res.render('pages/profile')
+    res.render('pages/profile', {title: 'Profile'})
 })
 
 app.get('*', function (req, res) {
