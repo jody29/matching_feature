@@ -2,30 +2,22 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const PORT = 8080
+const router = require('./route/router')
 
 // EJS setup
 app.set('view engine', 'ejs')
 // Set views folder
 app.set('views', path.join(__dirname, 'views'))
-// Get static files from public folder
+// Use static files from public folder
 app.use(express.static(__dirname + '/public'))
 
+// Use the router when on index page
+app.use('/', router);
 
-// index page
-app.get('/', function (req, res) {
-    res.render('pages/index', {title: 'Home'})
-})
-
-// Profile page
-app.get('/profile', function (req, res) {
-    res.render('pages/profile', {title: 'Profile'})
-})
-
-app.get('*', function (req, res) {
-    res.status(404).render('pages/404')
-})
 
 // Express listens to PORT 8080
 app.listen(PORT, () => {
    console.log(`http://localhost:${PORT}`)
 })
+
+

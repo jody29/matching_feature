@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('../partials/head') %>
 </head>
-<body>
-    <%- include('../partials/header') %>
-    <h1>Error 404: Page not found!</h1>
+
+<body id="error404">
+
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+    
+    <main>
+    <h1>Error 404</h1>
+    <p>Could not find: <b><%= url %></b></p>
+    </main>
+    
 </body>
+
 </html>
 
 

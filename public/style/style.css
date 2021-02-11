@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background: black;
+    background-color: darkcyan;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -27,6 +27,6 @@ header nav ul li a {
     padding: 0 1em;
 }
 
-h1 {
-    margin: 1em 1em;
+main {
+    margin: 1em 2em;
 }
