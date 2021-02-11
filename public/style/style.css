@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background-color: darkcyan;
+    background-color: goldenrod;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -19,14 +19,27 @@ header nav ul {
     flex-direction: row; 
     list-style: none;
     padding: 1em;
+    justify-content: space-between;
 }
 
 header nav ul li a {
-    color: white;
+    color: black;
+    font-weight: bold;
     text-decoration: none;
     padding: 0 1em;
 }
 
 main {
-    margin: 1em 2em;
+    margin: 3em 2em;
 }
+
+h1, p, a {
+    font-family: sans-serif;
+    
+}
+
+.current {
+    color: darkred;
+}
+
+
