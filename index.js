@@ -12,7 +12,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.static(__dirname + '/public'))
 
 // Use the router when on index page
-app.use('/', router);
+app.use('/', router)
 
 
 // Express listens to PORT 8080

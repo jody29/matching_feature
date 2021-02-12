@@ -1,7 +1,13 @@
 <nav>
     <ul>
+       <% if (currentHome !== '') { %>
         <li><a class="<%= currentHome %>" href="/">Home</a></li>
+        <% } %>
+        <% if (currentProfile !== '') { %>
         <li><a class="<%= currentProfile %>" href="/profile">Profile</a></li>
+        <% } %>
+        <% if (currentPreference !== '') { %>
         <li><a class="<%= currentPreference %>" href="/preference">Preferences</a></li>
+        <% } %>
     </ul>
 </nav>
