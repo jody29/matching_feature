@@ -21,15 +21,6 @@ router.get('/profile', function (req, res) {
     })
 })
 
-router.get('/preference', function (req, res) {
-    res.render('pages/preference', {
-        title: 'Preferences',
-        currentPreference: 'current',
-        currentProfile: 'none',
-        currentHome: 'none'
-        
-    })
-})
 
 router.get('*', function (req, res) {
     res.status(404).render('pages/404', {
