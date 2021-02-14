@@ -18,15 +18,16 @@ header nav ul {
     display: flex;
     flex-direction: row; 
     list-style: none;
-    padding: 1em;
+    padding: 0 1em .5em;
     justify-content: space-between;
 }
 
-header nav ul li a {
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 0 1em;
+header nav ul li a svg {
+    fill: none;
+    stroke: black;
+    stroke-width: 14px;
+    width: 5em;
+    height: 2em;
 }
 
 main {
@@ -39,7 +40,7 @@ h1, p, a {
 }
 
 .current {
-    color: darkred;
+    stroke: white;
 }
 
 #preferenceForm fieldset {
