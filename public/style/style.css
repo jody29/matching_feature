@@ -75,4 +75,14 @@ h1, p, a {
     display: none;
 }
 
+#matchingPage main section:first-of-type {
+    display: flex;
+    align-items: baseline;
+}
+
+#matchingPage main section:first-of-type button {
+    margin-left: auto;
+    height: 2em;
+}
+
 
