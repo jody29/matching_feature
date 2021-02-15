@@ -73,6 +73,8 @@ h1, p, a {
 }
 
 
+
+
 #preferenceForm fieldset label img {
     width: 4.2em;
     margin: 0 1em 0 0;
@@ -91,6 +93,7 @@ h1, p, a {
     border: 0;
     box-shadow: 2px 2px 2px gray;
     margin-top: 1em;
+    filter: grayscale(100%);
 }
 
 #preferenceForm input {
