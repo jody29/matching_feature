@@ -122,9 +122,6 @@ main div:first-of-type {
   filter: grayscale(0);
 }
 
-
-
-
 #preferenceForm fieldset label img {
     width: 4.2em;
     margin: 0 1em 0 0;
