@@ -49,11 +49,18 @@ h1, p, a {
     border: 0;
     padding: 0;
     margin: 0;
+    margin-bottom: 1em;
 }
 
 #preferenceForm fieldset legend {
     margin-bottom: .5em;
     font-family: sans-serif;
+    font-size: 1.1em;
+}
+
+#preferenceForm fieldset:nth-of-type(2) button {
+    margin-left: 1em;
+    border-radius: 50%;
     font-size: 1.1em;
 }
 
@@ -71,9 +78,26 @@ h1, p, a {
     margin: 0 1em 0 0;
 }
 
-#preferenceForm input {
+#preferenceForm input[type="checkbox"] {
     display: none;
 }
+
+#preferenceForm input[type='submit'] {
+    background-color: cadetblue;
+    border-radius: .5em;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bolder;
+    border: 0;
+    box-shadow: 2px 2px 2px gray;
+    margin-top: 1em;
+}
+
+#preferenceForm input {
+    width: 100%;
+    padding: .5em;
+}
+
 
 #matchingPage main section:first-of-type {
     display: flex;
@@ -83,6 +107,23 @@ h1, p, a {
 #matchingPage main section:first-of-type button {
     margin-left: auto;
     height: 2em;
+    width: 3.5em;
+    border: 0;
+    outline: 0;
+    background: none;
 }
+
+#matchingPage main section:first-of-type button img {
+    width: 3.5em;
+}
+
+#matchingPage main div:first-of-type {
+    display: none;
+}
+
+.showPreference {
+    display: block !important;
+}
+
 
 
