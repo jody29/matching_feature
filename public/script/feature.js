@@ -1,8 +1,10 @@
-const preferenceButton = document.querySelector('main section:first-of-type button');
-const preferenceMenu = document.querySelector('main div:first-of-type');
+let preferenceMenu = document.querySelector('main div:first-of-type');
+let preferenceButton = document.querySelector('main section:first-of-type button');
+let preferenceImage = document.querySelector('main section:first-of-type button img');
 
-const showPreference = () => {
-    preferenceMenu.classList.toggle('showPreference');
+const showPreferences = () => {
+    preferenceMenu.classList.toggle('showPreferences');
 };
 
-preferenceButton.addEventListener('click', showPreference);
+preferenceButton.addEventListener('click', showPreferences);
+

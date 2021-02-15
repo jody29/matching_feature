@@ -1,8 +1,14 @@
+const dotenv = require('dotenv');
+const dotenvExpand = require('dotenv-expand');
+const myEnv = dotenv.config();
+dotenvExpand(myEnv);
+
 const express = require('express')
 const app = express()
 const path = require('path')
 const PORT = 8080
 const router = require('./route/router')
+
 
 // EJS setup
 app.set('view engine', 'ejs')
@@ -19,5 +25,6 @@ app.use('/', router)
 app.listen(PORT, () => {
    console.log(`http://localhost:${PORT}`)
 })
+
 
 
