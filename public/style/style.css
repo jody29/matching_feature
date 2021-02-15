@@ -50,6 +50,47 @@ h1 {
     width: fit-content;
 }
 
+#matchPage main section:first-of-type {
+    display: flex;
+}
+
+#matchPage main section:first-of-type button {
+    margin-left: auto;
+    background: transparent;
+    border: 0;
+    width: 3.5em;
+    height: 4em;
+    padding: 0;
+}
+
+#matchPage main section:first-of-type button img {
+    width: 3.5em;
+}
+
+#matchPage main section:first-of-type button:enabled {
+    border: 0;
+    outline: 0;
+}
+
+main div:first-of-type {
+    display: none;
+    transition: 300ms;
+    background: white;
+    height: 100%;
+}
+
+.showPreferences {
+    height: 100%;
+    display: block !important;
+    
+}
+
+
+#preferenceForm fieldset:nth-of-type(2) input {
+    width: 100%;
+    padding: .5em;
+}
+
 
 
 #preferenceForm fieldset {
@@ -58,6 +99,7 @@ h1 {
     border: 0;
     padding: 0;
     margin: 0;
+    margin-bottom: 1em;
 }
 
 #preferenceForm fieldset legend {
@@ -80,8 +122,24 @@ h1 {
     margin: 0 1em 0 0;
 }
 
-#preferenceForm input {
+#preferenceForm input[type="checkbox"] {
     display: none;
 }
+
+#preferenceForm input[type="submit"] {
+    width: 100%;
+    align-content: center;
+    margin-top: 2em;
+    background-color: cadetblue;
+    padding: 1em;
+    border-radius: .5em;
+    border: 0;
+    box-shadow: 2px 2px 5px gray;
+    color: black;
+    font-weight: bolder;
+    font-size: 1em;
+    font-family: sans-serif;
+}
+
 
 
