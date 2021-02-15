@@ -30,11 +30,6 @@ header nav ul li a svg {
     width: 6em;
 }
 
-.current {
-    stroke: white;
-}
-
-
 main {
     margin: 3em 2em;
 }
@@ -86,9 +81,14 @@ main div:first-of-type {
 }
 
 
+
 #preferenceForm fieldset:nth-of-type(2) input {
     width: 100%;
     padding: .5em;
+}
+
+.current {
+    stroke: white;
 }
 
 
@@ -108,6 +108,12 @@ main div:first-of-type {
     font-size: 1.1em;
 }
 
+#preferenceForm fieldset:nth-of-type(2) button {
+    margin-left: 1em;
+    border-radius: 50%;
+    font-size: 1.1em;
+}
+
 #preferenceForm fieldset label {
     filter: grayscale(100%);
 }
@@ -115,6 +121,8 @@ main div:first-of-type {
 #preferenceForm input[type="checkbox"]:checked + label {
   filter: grayscale(0);
 }
+
+
 
 
 #preferenceForm fieldset label img {
@@ -139,7 +147,39 @@ main div:first-of-type {
     font-weight: bold;
     font-size: 1em;
     font-family: sans-serif;
+    display: none;
 }
+
+
+#preferenceForm input {
+    width: 100%;
+    padding: .5em;
+}
+
+
+#matchingPage main section:first-of-type {
+    display: flex;
+    align-items: baseline;
+}
+
+#matchingPage main section:first-of-type button {
+    margin-left: auto;
+    height: 2em;
+    width: 3.5em;
+    border: 0;
+    outline: 0;
+    background: none;
+}
+
+#matchingPage main section:first-of-type button img {
+    width: 3.5em;
+}
+
+#matchingPage main div:first-of-type {
+    display: none;
+}
+
+
 
 
 
