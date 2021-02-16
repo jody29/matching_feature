@@ -139,12 +139,11 @@ main div:first-of-type {
     padding: 1em;
     border-radius: .5em;
     border: 0;
-    box-shadow: 2px 2px 5px gray;
+    box-shadow: 2px 2px 2px gray;
     color: black;
     font-weight: bold;
     font-size: 1em;
     font-family: sans-serif;
-    display: none;
 }
 
 
