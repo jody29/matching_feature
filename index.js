@@ -19,10 +19,16 @@ app.set('views', path.join(__dirname, 'views'))
 // Use static files from public folder
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
+
+
 
 // Use the router when on index page
 app.use('/', router)
+
+app.post('/partials/preferenceForm', (req, res) => {
+   console.log('Got body:', req.body);
+   res.sendStatus(200);
+})
 
 // Express listens to PORT 8080
 app.listen(PORT, () => {
