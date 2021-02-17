@@ -5,6 +5,8 @@ dotenvExpand(myEnv);
 
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
+const slug = require('slug')
 const path = require('path')
 const PORT = 8080
 const router = require('./route/router')
@@ -16,10 +18,11 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 // Use static files from public folder
 app.use(express.static(__dirname + '/public'))
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
 
 // Use the router when on index page
 app.use('/', router)
-
 
 // Express listens to PORT 8080
 app.listen(PORT, () => {
