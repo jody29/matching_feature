@@ -12,6 +12,7 @@ const PORT = 8080
 const router = require('./route/router')
 
 
+
 // EJS setup
 app.set('view engine', 'ejs')
 // Set views folder
@@ -25,10 +26,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 // Use the router when on index page
 app.use('/', router)
 
-app.post('/partials/preferenceForm', (req, res) => {
-   console.log('Got body:', req.body);
-   res.sendStatus(200);
-})
+
 
 // Express listens to PORT 8080
 app.listen(PORT, () => {

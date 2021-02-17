@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const path = require('path')
 const bodyParser = require('body-parser')
-let data
+const session = require('express-session')
 
 
 router.get('/', function (req, res) {
@@ -20,9 +20,14 @@ router.get('/profile', function (req, res) {
         title: 'Profile',
         currentProfile: 'current',
         currentHome: 'none',
-        currentPreference: 'none'
+        currentPreference: 'none',
+        games: req.body.games,
+        consoles: req.body.chosenConsoles
+
+
     })
 })
+
 
 
 router.get('*', function (req, res) {
@@ -34,6 +39,22 @@ router.get('*', function (req, res) {
         currentHome: 'none'
     })
 })
+
+router.post('/partials/preferenceForm', (req, res) => {
+    const games = req.body.games
+    const consoles = req.body.chosenConsoles
+    
+    console.log(`games: ${games} \nconsoles: ${consoles}`)
+    
+    res.render('./pages/profile', {
+        title: 'profile',
+        currentPreference: 'none',
+        currentProfile: 'none',
+        currentHome: 'none',
+        games: games,
+        consoles: consoles
+    })
+ })
 
 
 module.exports = router;
