@@ -26,7 +26,8 @@ const addGame = () => {
     for (let i = 0; i < gameArray.length; i++) {
         
         let li = document.createElement('li');
-        let button = document.createElement('h4')
+        let button = document.createElement('h4');
+        button.className = 'close';
         li.textContent = gameArray[i];
         button.textContent = '-';
         gameUl.appendChild(li);
@@ -34,12 +35,15 @@ const addGame = () => {
         
     };
 
+    console.log(gameArray);
+
 };
 
 
 preferenceButton.addEventListener('click', showPreferences);
 addButton.addEventListener('click', addGame);
-window.document.addEventListener('load', showGames);
+
+
 
 
 

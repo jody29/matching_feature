@@ -6,7 +6,6 @@ const session = require('express-session')
 
 
 
-
 router.get('/', function (req, res) {
     res.render('pages/index', {
         title: 'Home',
@@ -30,8 +29,6 @@ router.get('/profile', function (req, res) {
     })
 })
 
-
-
 router.get('*', function (req, res) {
     res.status(404).render('pages/404', {
         url: req.url,
@@ -43,6 +40,7 @@ router.get('*', function (req, res) {
 })
 
 router.post('/partials/preferenceForm', (req, res) => {
+
     const games = req.body.games
     const consoles = req.body.chosenConsoles
     
