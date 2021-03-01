@@ -4,6 +4,9 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 
+const db = require('../model/db')
+const dbName = process.env.DB_NAME
+const collectionName = 'users'
 
 
 router.get('/', function (req, res) {
@@ -39,10 +42,20 @@ router.get('*', function (req, res) {
     })
 })
 
+
+
 router.post('/partials/preferenceForm', (req, res) => {
 
+    const userBody = req.body
     const games = req.body.games
     const consoles = req.body.chosenConsoles
+
+    db.initialize(dbName, collectionName, function(dbCollection) {
+        dbCollection.insertOne(userBody, (error, result) => {
+            if (error) throw error
+        })
+    })
+    
     
     console.log(`games: ${games} \nconsoles: ${consoles}`)
     

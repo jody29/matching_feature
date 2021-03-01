@@ -18,9 +18,9 @@ const addGame = () => {
     } else {
         gameArray.push(inputValue);
         errorMessage.textContent = '';
+        document.getElementById('games').value = '';
     };
 
-    inputValue.textContent = '';
     gameUl.textContent = '';
 
     for (let i = 0; i < gameArray.length; i++) {
@@ -42,8 +42,6 @@ const addGame = () => {
 
 preferenceButton.addEventListener('click', showPreferences);
 addButton.addEventListener('click', addGame);
-
-
 
 
 
