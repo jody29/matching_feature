@@ -8,7 +8,7 @@ body {
 
 header {
     background-color: goldenrod;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
 }
@@ -223,6 +223,29 @@ main div:first-of-type {
 
 #matchingPage main div:first-of-type {
     display: none;
+}
+
+#matchingPage main article {
+    overflow-y: scroll;
+}
+
+.userCard {
+    background-color: dimgray;
+    list-style: none;
+    padding: 1em;
+    border-radius: .5em;
+    box-shadow: -3px 3px 2px black;
+}
+
+.userCard li {
+    color: white;
+    font-family: sans-serif;
+}
+
+.userCard li:first-of-type {
+    font-weight: bold;
+    margin-bottom: .5em;
+
 }
 
 

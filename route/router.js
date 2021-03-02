@@ -4,19 +4,27 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 
+
+
 const db = require('../model/db')
 const dbName = process.env.DB_NAME
 const collectionName = 'users'
 
 
 router.get('/', function (req, res) {
-    res.render('pages/index', {
-        title: 'Home',
-        currentHome: 'current',
-        currentProfile: 'none',
-        currentPreference: 'none'
-        
+    db.initialize(dbName, collectionName, function(dbCollection) {
+        dbCollection.find().toArray().then(results => {
+            res.render('pages/index', {
+                users: results,
+                title: 'Home',
+                currentHome: 'current',
+                currentProfile: 'none',
+                currentPreference: 'none'
+            })
+        })
+
     })
+
 })
 
 router.get('/profile', function (req, res) {
@@ -62,7 +70,7 @@ router.post('/partials/preferenceForm', (req, res) => {
     res.render('./pages/profile', {
         title: 'profile',
         currentPreference: 'none',
-        currentProfile: 'none',
+        currentProfile: 'current',
         currentHome: 'none',
         games: games,
         consoles: consoles

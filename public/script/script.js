@@ -1,6 +1,5 @@
-let preferenceMenu = document.querySelector('main div:first-of-type');
-let preferenceButton = document.querySelector('main section:first-of-type button');
-let preferenceImage = document.querySelector('main section:first-of-type button img');
+let preferenceMenu = document.querySelector('#matchPage main div:first-of-type');
+let preferenceButton = document.querySelector('#matchPage main section:first-of-type button');
 let gameArray = [];
 const addButton = document.querySelector('.addButton');
 const gameUl = document.querySelector('.gameArray');
@@ -36,12 +35,15 @@ const addGame = () => {
     };
 
     console.log(gameArray);
+    
+    8
 
 };
 
 
 preferenceButton.addEventListener('click', showPreferences);
 addButton.addEventListener('click', addGame);
+
 
 
 

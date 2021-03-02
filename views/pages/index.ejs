@@ -21,7 +21,19 @@
             <%- include('../partials/preferenceForm') %>
         </div>
 
-        
+        <article>
+            
+            <% for(let i = 0; i < users.length; i++) {%>
+              <ul class="userCard">
+                
+                <li><%= users[i].username %></li>
+                <li>Console: <%= users[i].chosenConsoles %></li>
+                <li>Games: <%= users[i].games %></li>
+               
+                
+              </ul>
+            <% } %>
+        </article>
 
     </main>
 
