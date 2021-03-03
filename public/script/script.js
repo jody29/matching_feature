@@ -36,8 +36,6 @@ const addGame = () => {
 
     console.log(gameArray);
     
-    8
-
 };
 
 
