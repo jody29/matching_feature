@@ -4,15 +4,14 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 
-
-
 const db = require('../model/db')
 const dbName = process.env.DB_NAME
 const collectionName = 'users'
 
+db.initialize(dbName, collectionName, function(dbCollection) {
 
 router.get('/', function (req, res) {
-    db.initialize(dbName, collectionName, function(dbCollection) {
+    
         dbCollection.find().toArray().then(results => {
             res.render('pages/index', {
                 users: results,
@@ -23,31 +22,31 @@ router.get('/', function (req, res) {
             })
         })
 
-    })
-
 })
 
 router.get('/profile', function (req, res) {
-    res.render('pages/profile', {
-        title: 'Profile',
-        currentProfile: 'current',
-        currentHome: 'none',
-        currentPreference: 'none',
-        games: req.body.games,
-        consoles: req.body.chosenConsoles
-
-
-    })
+   
+       dbCollection.find().toArray().then(results => {
+        res.render('pages/profile', {
+            user: results,
+            title: 'Users',
+            currentProfile: 'current',
+            currentHome: 'none',
+            currentPreference: 'none',
+        })
+       })
+   
 })
 
-router.get('*', function (req, res) {
-    res.status(404).render('pages/404', {
-        url: req.url,
-        title: 'Error 404',
-        currentPreference: 'none',
-        currentProfile: 'none',
-        currentHome: 'none'
+router.post('/partials/addUserForm', function (req, res) {
+
+    const newUser = req.body
+
+    dbCollection.insertOne(newUser, (error, result) => {
+        if (error) throw error
     })
+
+    res.redirect('../profile')
 })
 
 
@@ -58,24 +57,27 @@ router.post('/partials/preferenceForm', (req, res) => {
     const games = req.body.games
     const consoles = req.body.chosenConsoles
 
-    db.initialize(dbName, collectionName, function(dbCollection) {
         dbCollection.insertOne(userBody, (error, result) => {
             if (error) throw error
         })
-    })
-    
     
     console.log(`games: ${games} \nconsoles: ${consoles}`)
     
-    res.render('./pages/profile', {
-        title: 'profile',
-        currentPreference: 'none',
-        currentProfile: 'current',
-        currentHome: 'none',
-        games: games,
-        consoles: consoles
-    })
  })
+
+ router.get('*', function (req, res) {
+    res.status(404).render('pages/404', {
+        url: req.url,
+        title: 'Error 404',
+        currentPreference: 'none',
+        currentProfile: 'none',
+        currentHome: 'none'
+    })
+})
+
+}, function(err) {
+    throw (err)
+})
 
 
 module.exports = router;

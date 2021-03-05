@@ -91,8 +91,6 @@ main div:first-of-type {
     stroke: white;
 }
 
-
-
 #preferenceForm fieldset {
     display: flex;
     width: 100%;
@@ -114,58 +112,17 @@ main div:first-of-type {
     font-size: 1.1em;
 }
 
-.addButton {
-    color: white;
-    padding: .5em;
-    background-color: dimgray;
-    border-radius: 0 .5em 0 0;
-}
-
-.errorMessage {
-    color: red;
-    font-family: sans-serif;
-    font-weight: bold;
-    transform: translateY(1em);
-}
-
-.gameArray {
-    list-style: none;
-    padding: 0;
-    margin-top: -1em;
-}
-
-.gameArray li {
-    width: 100%;
-    background-color: gold;
-    color: black;
-    font-family: sans-serif;
-    font-weight: bold;
-    padding: .5em 1em;
-    border: 1px solid dimgray;
-    display: flex;
-    align-items: center;
-}
-
-.gameArray li:last-of-type {
-    border-radius: 0 0 .5em .5em;
-}
-
-.gameArray li h4 {
-    padding: 0;
-    margin: 0 0 0 auto;
-    height: fit-content;
-}
-
 #preferenceForm fieldset label {
     filter: grayscale(100%);
 }
 
 #preferenceForm input[type="text"] {
-    border-radius: .5em 0 0 0;
+    border-radius: .5em;
 }
 
 #preferenceForm input[type="text"]:enabled {
     outline: none;
+    padding: 1em;
 }
 
 #preferenceForm input[type="checkbox"]:checked + label {
@@ -184,8 +141,8 @@ main div:first-of-type {
 #preferenceForm input[type="submit"] {
     width: 100%;
     align-content: center;
-    margin-top: 2em;
     background-color: cadetblue;
+    margin-top: .5em;
     padding: 1em;
     border-radius: .5em;
     border: 0;
@@ -248,6 +205,76 @@ main div:first-of-type {
 
 }
 
+#addUser {
+    width: 100%;
+    display: none;
+}
+
+
+#addUser fieldset {
+    display: flex;
+    padding: 0;
+    width: 100%;
+    outline: none;
+    border: none;
+    margin-bottom: 1em;
+}
+
+#addUser legend {
+    margin-bottom: .5em;
+    font-size: 1.1em;
+    font-family: sans-serif;
+}
+
+
+
+#addUser img {
+    width: 4.4em;
+    margin-right: .5em;
+}
+
+#addUser input {
+    width: 100%;
+    padding: .5em;
+}
+
+#addUser input[type="checkbox"] {
+    display: none
+}
+
+#addUser input[type="checkbox"]:checked + label {
+    filter: grayscale(0);
+}
+
+#addUser label {
+    filter: grayscale(100%);
+}
+
+#newUser {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+#newUser button {
+    border-radius: 5em;
+    border: 2px solid goldenrod;
+    margin-top: .5em;
+    padding: .5em;
+    font-size: 1.2em;
+    width: 2.5em;
+    align-content: center;
+    box-shadow: 0px 0px 10px gray;
+}
+
+#newUser button:enabled {
+    outline: none;
+    border: none;
+}
+
+.showForm {
+    display: block !important;
+}
 
 
 

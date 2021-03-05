@@ -13,8 +13,29 @@
     <main>
         <h1><%= title %></h1>
         
-        <p>Favourite games: <%= games %></p>
-        <p>Plays on: <%= consoles %></p>
+        <%- include('../partials/addUserForm') %>
+
+
+        <section id="newUser">
+            <button>+</button>
+            </section>
+
+        <article>
+
+            <% for(let i = 0; i < user.length; i++) {%>
+                <ul class="userCard">
+                  
+                  <li><%= user[i].username %></li>
+                  <li>Console: <%= user[i].chosenConsoles %></li>
+                  <li>Games: <%= user[i].games %></li>
+                 
+                  
+                </ul>
+              <% } %>
+
+        </article>
+        
+        
 
     </main>
 
@@ -22,5 +43,7 @@
         <%- include('../partials/footer') %>
     </footer>
 </body>
+
+<script src="../script/addUser.js"></script>
 
 </html>
