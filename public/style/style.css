@@ -11,6 +11,8 @@ header {
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 100;
+    box-shadow: 0px -3px 10px black;
 }
 
 
@@ -241,7 +243,22 @@ main div:first-of-type {
 
 #addUser input {
     width: 100%;
-    padding: .5em;
+    padding: 1em;
+}
+
+#addUser input[type="submit"] {
+    width: 100%;
+    align-content: center;
+    background-color: cadetblue;
+    margin-top: .5em;
+    padding: 1em;
+    border-radius: .5em;
+    border: 0;
+    box-shadow: 2px 2px 2px gray;
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+    font-family: sans-serif;
 }
 
 #addUser input[type="checkbox"] {
@@ -302,7 +319,6 @@ main div:first-of-type {
 .editForm input:first-of-type {
     display: none;
 }
-
 
 
 

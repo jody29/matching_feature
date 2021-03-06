@@ -42,11 +42,13 @@ db.initialize(dbName, collectionName, function(dbCollection) {
     router.post('/partials/addUserForm', function (req, res) {
 
         const newUser = req.body
-        
-        dbCollection.insertOne(newUser, (error, result) => {
-        if (error) throw error
-        })
 
+        if (newUser !== '') {
+            dbCollection.insertOne(newUser, (error, result) => {
+                if (error) throw error
+            })
+        }  
+        
         res.redirect('../users')
     })
 
