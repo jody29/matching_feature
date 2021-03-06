@@ -25,11 +25,24 @@
             <% for(let i = 0; i < user.length; i++) {%>
                 <ul class="userCard">
                   
-                  <li><%= user[i].username %></li>
-                  <li>Console: <%= user[i].chosenConsoles %></li>
-                  <li>Games: <%= user[i].games %></li>
-                 
-                  
+                <section class="user">   
+                <li><%= user[i].username %> <button class="edit">Edit</button></li>
+                <li>Console: <%= user[i].chosenConsoles %></li>
+                <li>Games: <%= user[i].games %></li>
+                </section> 
+
+                <form action="/updateUser" method="POST" class="editForm">
+
+                    <input type="text" value="<%= user[i]._id %>" name="id">
+                    <input type="text" value="<%= user[i].username %>" name="username">
+                    <input type="text" value="<%= user[i].chosenConsoles %>" name="chosenConsoles">
+                    <input type="text" value="<%= user[i].games %>" name="games">
+
+                    <input type="submit" value="SAVE">
+                
+                
+                </form>
+                
                 </ul>
               <% } %>
 

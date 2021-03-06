@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 
 const db = require('../model/db')
+const { ObjectID } = require('mongodb')
 const dbName = process.env.DB_NAME
 const collectionName = 'users'
 
@@ -28,21 +29,20 @@ db.initialize(dbName, collectionName, function(dbCollection) {
     router.get('/profile', function (req, res) {
    
        dbCollection.find().toArray().then(results => {
-        res.render('pages/profile', {
+            res.render('pages/profile', {
             user: results,
             title: 'Users',
             currentProfile: 'current',
             currentHome: 'none',
             currentPreference: 'none',
-        })
-       })
-   
+            })
+       })   
     })
 
     router.post('/partials/addUserForm', function (req, res) {
 
         const newUser = req.body
-
+        
         dbCollection.insertOne(newUser, (error, result) => {
         if (error) throw error
         })
@@ -50,6 +50,24 @@ db.initialize(dbName, collectionName, function(dbCollection) {
         res.redirect('../profile')
     })
 
+    router.post('/updateUser', (req, res) => {
+        const item = {
+            username: req.body.username,
+            chosenConsoles: req.body.chosenConsoles,
+            games: req.body.games
+        }
+
+        const itemId = req.body.id
+        
+
+        dbCollection.findOneAndUpdate({ '_id': new ObjectID(itemId) }, { $set: item }, (error, result) => {
+            if (error) throw error
+        })
+
+        res.redirect('../profile')
+
+
+    })
 
 
     router.post('/partials/preferenceForm', (req, res) => {

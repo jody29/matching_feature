@@ -192,6 +192,7 @@ main div:first-of-type {
     padding: 1em;
     border-radius: .5em;
     box-shadow: -3px 3px 2px black;
+    position: relative;
 }
 
 .userCard li {
@@ -201,8 +202,13 @@ main div:first-of-type {
 
 .userCard li:first-of-type {
     font-weight: bold;
-    margin-bottom: .5em;
+    margin-right: auto;
+    width: 100%;
+    display: flex;
+}
 
+.userCard li:first-of-type button {
+    margin-left: auto;
 }
 
 #addUser {
@@ -274,6 +280,27 @@ main div:first-of-type {
 
 .showForm {
     display: block !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.editForm {
+    display: none;
+    position: absolute;
+    top: 1em;
+    
+}
+
+.editForm input[type="submit"] {
+    position: absolute;
+    right: 1em;
+    top: 0;
+}
+
+.editForm input:first-of-type {
+    display: none;
 }
 
 
