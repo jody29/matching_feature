@@ -4,15 +4,16 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 
-
-
 const db = require('../model/db')
+const { ObjectID } = require('mongodb')
 const dbName = process.env.DB_NAME
 const collectionName = 'users'
 
+// Initialize the database
+db.initialize(dbName, collectionName, function(dbCollection) {
 
-router.get('/', function (req, res) {
-    db.initialize(dbName, collectionName, function(dbCollection) {
+    router.get('/', function (req, res) {
+    
         dbCollection.find().toArray().then(results => {
             res.render('pages/index', {
                 users: results,
@@ -25,57 +26,79 @@ router.get('/', function (req, res) {
 
     })
 
-})
+    router.get('/users', function (req, res) {
+   
+       dbCollection.find().toArray().then(results => {
+            res.render('pages/users', {
+            user: results,
+            title: 'Users',
+            currentProfile: 'current',
+            currentHome: 'none',
+            currentPreference: 'none',
+            })
+       })   
+    })
 
-router.get('/profile', function (req, res) {
-    res.render('pages/profile', {
-        title: 'Profile',
-        currentProfile: 'current',
-        currentHome: 'none',
-        currentPreference: 'none',
-        games: req.body.games,
-        consoles: req.body.chosenConsoles
+    router.post('/partials/addUserForm', function (req, res) {
+
+        const newUser = req.body
+
+        if (newUser !== '') {
+            dbCollection.insertOne(newUser, (error, result) => {
+                if (error) throw error
+            })
+        }  
+        
+        res.redirect('../users')
+    })
+
+    router.post('/updateUser', (req, res) => {
+        const item = {
+            username: req.body.username,
+            chosenConsoles: req.body.chosenConsoles,
+            games: req.body.games
+        }
+
+        const itemId = req.body.id
+        
+
+        dbCollection.findOneAndUpdate({ '_id': new ObjectID(itemId) }, { $set: item }, (error, result) => {
+            if (error) throw error
+        })
+
+        res.redirect('../users')
 
 
     })
-})
 
-router.get('*', function (req, res) {
-    res.status(404).render('pages/404', {
+
+    router.post('/partials/preferenceForm', (req, res) => {
+
+        const userBody = req.body
+        const games = req.body.games
+        const consoles = req.body.chosenConsoles
+
+        dbCollection.insertOne(userBody, (error, result) => {
+            if (error) throw error
+        })
+    
+        console.log(`games: ${games} \nconsoles: ${consoles}`)
+    
+    })
+
+    router.get('*', function (req, res) {
+        res.status(404).render('pages/404', {
         url: req.url,
         title: 'Error 404',
         currentPreference: 'none',
         currentProfile: 'none',
         currentHome: 'none'
-    })
-})
-
-
-
-router.post('/partials/preferenceForm', (req, res) => {
-
-    const userBody = req.body
-    const games = req.body.games
-    const consoles = req.body.chosenConsoles
-
-    db.initialize(dbName, collectionName, function(dbCollection) {
-        dbCollection.insertOne(userBody, (error, result) => {
-            if (error) throw error
         })
     })
-    
-    
-    console.log(`games: ${games} \nconsoles: ${consoles}`)
-    
-    res.render('./pages/profile', {
-        title: 'profile',
-        currentPreference: 'none',
-        currentProfile: 'current',
-        currentHome: 'none',
-        games: games,
-        consoles: consoles
-    })
- })
+
+}, function(err) { // End of db initialize
+    throw (err)
+})
 
 
 module.exports = router;
