@@ -26,10 +26,10 @@ db.initialize(dbName, collectionName, function(dbCollection) {
 
     })
 
-    router.get('/profile', function (req, res) {
+    router.get('/users', function (req, res) {
    
        dbCollection.find().toArray().then(results => {
-            res.render('pages/profile', {
+            res.render('pages/users', {
             user: results,
             title: 'Users',
             currentProfile: 'current',
@@ -47,7 +47,7 @@ db.initialize(dbName, collectionName, function(dbCollection) {
         if (error) throw error
         })
 
-        res.redirect('../profile')
+        res.redirect('../users')
     })
 
     router.post('/updateUser', (req, res) => {
@@ -64,7 +64,7 @@ db.initialize(dbName, collectionName, function(dbCollection) {
             if (error) throw error
         })
 
-        res.redirect('../profile')
+        res.redirect('../users')
 
 
     })
