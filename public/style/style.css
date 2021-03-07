@@ -155,37 +155,13 @@ main div:first-of-type {
     font-family: sans-serif;
 }
 
-
 #preferenceForm input {
     width: 100%;
     padding: .5em;
 }
 
-
-#matchingPage main section:first-of-type {
-    display: flex;
-    align-items: baseline;
-}
-
-#matchingPage main section:first-of-type button {
-    margin-left: auto;
-    height: 2em;
-    width: 3.5em;
-    border: 0;
-    outline: 0;
-    background: none;
-}
-
-#matchingPage main section:first-of-type button img {
-    width: 3.5em;
-}
-
-#matchingPage main div:first-of-type {
-    display: none;
-}
-
-#matchingPage main article {
-    overflow-y: scroll;
+main article {
+    margin-bottom: 7em;
 }
 
 .userCard {
