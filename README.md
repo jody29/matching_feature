@@ -15,6 +15,8 @@ $ npm install
 ```
 $ npm run start
 ```
+## MongoDB cluster representation
+![MONGO_VISUAL_Tekengebied 1](https://user-images.githubusercontent.com/66092262/110227877-045d9680-7efd-11eb-9b1c-0540a79f0528.png)
 
 ## License
 MIT
