@@ -1,4 +1,5 @@
 # Matching Feature
+With this application, you can find other gamers to play with. Just fill in your favorite console and favorite game and we will find the best matches for you. After this, you will never have to play video games alone.
 
 ## Installation Guide
 To be able to run this project. You will need to have NPM and Node.js installed.
