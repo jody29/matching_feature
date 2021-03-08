@@ -4,6 +4,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 
+
 const db = require('../model/db')
 const { ObjectID } = require('mongodb')
 const dbName = process.env.DB_NAME
@@ -71,19 +72,34 @@ db.initialize(dbName, collectionName, function(dbCollection) {
 
     })
 
+    const sameConsole = (console, prefConsole) => {
+        return console === prefConsole
+    }
+
+    const sameGame = (game, prefGame) => {
+        return game === prefGame
+    }
 
     router.post('/partials/preferenceForm', (req, res) => {
+        
+        dbCollection.find().toArray(function(err, result) {
+            if (err) throw err
+            let data = result
 
-        const userBody = req.body
-        const games = req.body.games
-        const consoles = req.body.chosenConsoles
-
-        dbCollection.insertOne(userBody, (error, result) => {
-            if (error) throw error
+            const games = req.body.games
+            const consoles = req.body.chosenConsoles
+            
+            const resultData = data.filter((user) => sameConsole(user.chosenConsoles, consoles) && sameGame(user.games, games)) 
+            
+            res.render('pages/index', {
+                title: 'Home',
+                users: resultData,
+                currentHome: 'current',
+                currentPreference: 'none',
+                currentProfile: 'none'
+            })   
         })
-    
-        console.log(`games: ${games} \nconsoles: ${consoles}`)
-    
+          
     })
 
     router.get('*', function (req, res) {
