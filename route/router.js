@@ -45,62 +45,61 @@ db.initialize(dbName, collectionName, function(dbCollection) { // Initialize the
         const newUser = req.body // Request the body of the filled in data
 
         
-        dbCollection.insertOne(newUser, (error, result) => {
+        dbCollection.insertOne(newUser, (error, result) => { // Insert newUser to database
                 if (error) throw error
         })
       
         
-        res.redirect('../users')
+        res.redirect('../users') // Redirect back to user page after insertion
     })
 
     router.post('/updateUser', (req, res) => {
-        const games = req.body.games
+        const games = req.body.games // request games
 
-        const lowerGames = games.toLowerCase()
+        const lowerGames = games.toLowerCase() // games to lower case
 
-        const item = {
+        const item = { // create item that has to be updated
             username: req.body.username,
             chosenConsoles: req.body.chosenConsoles,
             games: lowerGames
-        }
+        } 
 
-        const itemId = req.body.id
+        const itemId = req.body.id // request id of item
         
 
-        dbCollection.findOneAndUpdate({ '_id': new ObjectID(itemId) }, { $set: item }, (error, result) => {
+        dbCollection.findOneAndUpdate({ '_id': new ObjectID(itemId) }, { $set: item }, (error, result) => { // update user in database
             if (error) throw error
         })
 
-        res.redirect('../users')
+        res.redirect('../users') // redirect back to user page
 
 
     })
 
-    const sameConsole = (console, prefConsole) => {
+    const sameConsole = (console, prefConsole) => { // filter that checks if it is the same console
         return console === prefConsole
     }
 
-    const sameGame = (game, prefGame) => {
+    const sameGame = (game, prefGame) => { // filter that checks if it is the same game
         return game === prefGame
     }
 
-    // PREFERENCE FORM
-    router.post('/partials/preferenceForm', (req, res) => {
+    router.post('/partials/preferenceForm', (req, res) => { // PREFERENCE FORM
         
-        dbCollection.find().toArray(function(err, result) {
+        dbCollection.find().toArray(function(err, result) { // Get data from database that has to be filtered
             if (err) throw err
-            let data = result
+            let data = result // result becomes data
 
             const games = req.body.games
             const consoles = req.body.chosenConsoles
 
             const lowerGames = games.toLowerCase() // games string to lower case for validation
             
-            const resultData = data.filter((user) => sameConsole(user.chosenConsoles, consoles) && sameGame(user.games, lowerGames)) 
+            const resultData = data.filter((user) => sameConsole(user.chosenConsoles, consoles) && sameGame(user.games, lowerGames)) // filter the data from the db
 
             if (!games || !consoles) { // Check if games and consoles are empty
     
-            res.render('pages/index', {
+            res.render('pages/index', { // render the full user list if the preference form is empty
                 title: 'Home',
                 users: result,
                 currentHome: 'current',
@@ -108,7 +107,7 @@ db.initialize(dbName, collectionName, function(dbCollection) { // Initialize the
                 currentProfile: 'none'
             }) 
             }  else {
-                res.render('pages/index', {
+                res.render('pages/index', { // render the filter result if preference form is not empty
                     title: 'Home',
                     users: resultData,
                     currentHome: 'current',
@@ -123,7 +122,7 @@ db.initialize(dbName, collectionName, function(dbCollection) { // Initialize the
 
     // ERROR
     router.get('*', function (req, res) {
-        res.status(404).render('pages/404', {
+        res.status(404).render('pages/404', { // set status code to 404 and render the 404 page
         url: req.url,
         title: 'Error 404',
         currentPreference: 'none',
