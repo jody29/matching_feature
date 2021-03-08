@@ -4,4 +4,5 @@ node_js:
 cache: npm
 deploy:
   provider: heroku
-  api_key: 6307e454-d830-45dc-94bf-387f8ac4359e
+  api_key: 
+    secure: 6307e454-d830-45dc-94bf-387f8ac4359e
