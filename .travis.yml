@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+- lts/*
+cache: npm
+deploy:
+  provider: heroku
+  api_key:
+    secure: d5ca84db-3083-4e62-a34a-b97936ed68c8
