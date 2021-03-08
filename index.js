@@ -8,7 +8,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const slug = require('slug')
 const path = require('path')
-const PORT = 8080
+const PORT = process.env.PORT || 8080
 const router = require('./route/router')
 
 
@@ -29,7 +29,7 @@ app.use('/', router)
 
 
 // Express listens to PORT 8080
-app.listen(process.env.PORT || 8080, () => {
+app.listen(PORT, () => {
    console.log(`http://localhost:${PORT}`)
 })
 
