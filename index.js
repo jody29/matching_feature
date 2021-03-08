@@ -8,7 +8,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const slug = require('slug')
 const path = require('path')
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT
 const router = require('./route/router')
 
 
