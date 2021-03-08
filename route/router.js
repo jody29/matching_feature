@@ -80,6 +80,7 @@ db.initialize(dbName, collectionName, function(dbCollection) {
         return game === prefGame
     }
 
+    // PREFERENCE FORM
     router.post('/partials/preferenceForm', (req, res) => {
         
         dbCollection.find().toArray(function(err, result) {
@@ -102,6 +103,7 @@ db.initialize(dbName, collectionName, function(dbCollection) {
           
     })
 
+    // ERROR
     router.get('*', function (req, res) {
         res.status(404).render('pages/404', {
         url: req.url,
