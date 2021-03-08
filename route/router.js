@@ -4,19 +4,19 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 
-
+// Database variabels
 const db = require('../model/db')
 const { ObjectID } = require('mongodb')
+const { ENOTEMPTY } = require('constants')
 const dbName = process.env.DB_NAME
 const collectionName = 'users'
 
-// Initialize the database
-db.initialize(dbName, collectionName, function(dbCollection) {
-
-    router.get('/', function (req, res) {
+db.initialize(dbName, collectionName, function(dbCollection) { // Initialize the database
     
-        dbCollection.find().toArray().then(results => {
-            res.render('pages/index', {
+    router.get('/', function (req, res) { // Home page
+        
+        dbCollection.find().toArray().then(results => { // Get all data from database
+            res.render('pages/index', { // Render home page
                 users: results,
                 title: 'Home',
                 currentHome: 'current',
@@ -27,10 +27,10 @@ db.initialize(dbName, collectionName, function(dbCollection) {
 
     })
 
-    router.get('/users', function (req, res) {
+    router.get('/users', function (req, res) { // Users page
    
-       dbCollection.find().toArray().then(results => {
-            res.render('pages/users', {
+       dbCollection.find().toArray().then(results => { // Get all data from database
+            res.render('pages/users', { // Render user page
             user: results,
             title: 'Users',
             currentProfile: 'current',
@@ -40,24 +40,28 @@ db.initialize(dbName, collectionName, function(dbCollection) {
        })   
     })
 
-    router.post('/partials/addUserForm', function (req, res) {
+    router.post('/partials/addUserForm', function (req, res) { // Post request for add user
 
-        const newUser = req.body
+        const newUser = req.body // Request the body of the filled in data
 
-        if (newUser !== '') {
-            dbCollection.insertOne(newUser, (error, result) => {
+        
+        dbCollection.insertOne(newUser, (error, result) => {
                 if (error) throw error
-            })
-        }  
+        })
+      
         
         res.redirect('../users')
     })
 
     router.post('/updateUser', (req, res) => {
+        const games = req.body.games
+
+        const lowerGames = games.toLowerCase()
+
         const item = {
             username: req.body.username,
             chosenConsoles: req.body.chosenConsoles,
-            games: req.body.games
+            games: lowerGames
         }
 
         const itemId = req.body.id
@@ -89,17 +93,31 @@ db.initialize(dbName, collectionName, function(dbCollection) {
 
             const games = req.body.games
             const consoles = req.body.chosenConsoles
+
+            const lowerGames = games.toLowerCase() // games string to lower case for validation
             
-            const resultData = data.filter((user) => sameConsole(user.chosenConsoles, consoles) && sameGame(user.games, games)) 
-            
+            const resultData = data.filter((user) => sameConsole(user.chosenConsoles, consoles) && sameGame(user.games, lowerGames)) 
+
+            if (!games || !consoles) { // Check if games and consoles are empty
+    
             res.render('pages/index', {
                 title: 'Home',
-                users: resultData,
+                users: result,
                 currentHome: 'current',
                 currentPreference: 'none',
                 currentProfile: 'none'
-            })   
+            }) 
+            }  else {
+                res.render('pages/index', {
+                    title: 'Home',
+                    users: resultData,
+                    currentHome: 'current',
+                    currentPreference: 'none',
+                    currentProfile: 'none'
+                }) 
+            }   
         })
+
           
     })
 
