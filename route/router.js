@@ -42,9 +42,15 @@ db.initialize(dbName, collectionName, function(dbCollection) { // Initialize the
 
     router.post('/partials/addUserForm', function (req, res) { // Post request for add user
 
-        const newUser = req.body // Request the body of the filled in data
+        const games = req.body.games
+        const lowerGames = games.toLowerCase()
 
-        
+        const newUser = {
+            username: req.body.username,
+            chosenConsoles: req.body.chosenConsoles,
+            games: lowerGames
+        }
+
         dbCollection.insertOne(newUser, (error) => { // Insert newUser to database
                 if (error) throw error
         })

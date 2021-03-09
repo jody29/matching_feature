@@ -1,4 +1,6 @@
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     box-sizing: border-box;
 }
 
@@ -18,7 +20,7 @@ header {
 
 header nav ul {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     list-style: none;
     padding: .5em 0 .7em;
     justify-content: space-around;
@@ -36,7 +38,9 @@ main {
     margin: 3em 2em;
 }
 
-h1, p, a {
+h1,
+p,
+a {
     font-family: sans-serif;
 }
 
@@ -79,7 +83,7 @@ main div:first-of-type {
 .showPreferences {
     height: 100%;
     display: block !important;
-    
+
 }
 
 
@@ -127,8 +131,8 @@ main div:first-of-type {
     padding: 1em;
 }
 
-#preferenceForm input[type="checkbox"]:checked + label {
-  filter: grayscale(0);
+#preferenceForm input[type="radio"]:checked+label {
+    filter: grayscale(0);
 }
 
 #preferenceForm fieldset label img {
@@ -136,7 +140,7 @@ main div:first-of-type {
     margin: 0 1em 0 0;
 }
 
-#preferenceForm input[type="checkbox"] {
+#preferenceForm input[type="radio"] {
     display: none;
 }
 
@@ -237,11 +241,11 @@ main article {
     font-family: sans-serif;
 }
 
-#addUser input[type="checkbox"] {
+#addUser input[type="radio"] {
     display: none
 }
 
-#addUser input[type="checkbox"]:checked + label {
+#addUser input[type="radio"]:checked+label {
     filter: grayscale(0);
 }
 
@@ -283,7 +287,7 @@ main article {
     display: none;
     position: absolute;
     top: 1em;
-    
+
 }
 
 .editForm input[type="submit"] {
@@ -295,6 +299,3 @@ main article {
 .editForm input:first-of-type {
     display: none;
 }
-
-
-
