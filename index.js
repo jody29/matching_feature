@@ -1,12 +1,11 @@
-const dotenv = require('dotenv');
-const dotenvExpand = require('dotenv-expand');
-const myEnv = dotenv.config();
-dotenvExpand(myEnv);
+const dotenv = require('dotenv')
+const dotenvExpand = require('dotenv-expand')
+const myEnv = dotenv.config()
+dotenvExpand(myEnv)
 
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const slug = require('slug')
 const path = require('path')
 const PORT = process.env.PORT || 8080
 const router = require('./route/router')
