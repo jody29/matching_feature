@@ -45,7 +45,7 @@ db.initialize(dbName, collectionName, function(dbCollection) { // Initialize the
         const newUser = req.body // Request the body of the filled in data
 
         
-        dbCollection.insertOne(newUser, (error, result) => { // Insert newUser to database
+        dbCollection.insertOne(newUser, (error) => { // Insert newUser to database
                 if (error) throw error
         })
       
@@ -67,7 +67,7 @@ db.initialize(dbName, collectionName, function(dbCollection) { // Initialize the
         const itemId = req.body.id // request id of item
         
 
-        dbCollection.findOneAndUpdate({ '_id': new ObjectID(itemId) }, { $set: item }, (error, result) => { // update user in database
+        dbCollection.findOneAndUpdate({ '_id': new ObjectID(itemId) }, { $set: item }, (error) => { // update user in database
             if (error) throw error
         })
 
@@ -136,4 +136,4 @@ db.initialize(dbName, collectionName, function(dbCollection) { // Initialize the
 })
 
 
-module.exports = router;
+module.exports = router
