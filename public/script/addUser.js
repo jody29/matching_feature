@@ -17,7 +17,7 @@ editUser.forEach((element) => {
     })
 })
 
-newUser.addEventListener('click', function () {
+newUser.addEventListener('click', () => {
     userForm.classList.toggle('showForm')
 
     if (newUser.textContent === '+') {

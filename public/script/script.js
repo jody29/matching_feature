@@ -6,6 +6,6 @@ let preferenceImg = document.querySelector(
     '#matchPage main section:first-of-type button img'
 )
 
-preferenceButton.addEventListener('click', function () {
+preferenceButton.addEventListener('click', () => {
     preferenceMenu.classList.toggle('showPreferences')
 })
