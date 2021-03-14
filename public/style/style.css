@@ -299,3 +299,42 @@ main article {
 .editForm input:first-of-type {
     display: none;
 }
+
+#adminPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+#adminPage section fieldset {
+    outline: none;
+    border: none;
+    padding: 0;
+    margin-bottom: 1em;
+}
+
+#adminPage section legend {
+    font-family: sans-serif;
+}
+
+#adminPage section form input {
+    width: 100%;
+    padding: .5em;
+    margin-top: .5em;
+    border-radius: .5em;
+}
+
+#adminPage section button {
+    font-family: sans-serif;
+    background-color: goldenrod;
+    color: white;
+    padding: .5em 1em;
+    border-radius: 1em;
+    box-shadow: 0px 0px 5px gray;
+}
+
+#adminPage section button:enabled {
+    outline: none;
+}

@@ -10,11 +10,12 @@ const { ObjectID } = require('mongodb')
 const { ENOTEMPTY } = require('constants')
 const dbName = process.env.DB_NAME
 const collectionName = 'users'
+const adminCollection = 'admin'
 
 db.initialize(
     dbName,
     collectionName,
-    function (dbCollection) {
+    (dbCollection) => {
         // Initialize the database
 
         router.get('/', (req, res) => {
@@ -36,6 +37,40 @@ db.initialize(
                 })
         })
 
+        router.get('/admin', (req, res) => {
+            res.render('pages/admin', {
+                title: 'Admin',
+            })
+        })
+
+        router.post('/adminLogin', (req, res) => {
+            const login = req.body.adminUser
+            const pass = req.body.adminPass
+
+            db.initialize(dbName, adminCollection, (dbCollection) => {
+                dbCollection.findOne(
+                    {
+                        $or: [{ adminUser: login }, { adminPass: pass }],
+                    },
+                    (err, result) => {
+                        if (login === '' || pass === '') {
+                            res.redirect('../admin')
+                        } else {
+                            if (
+                                result.adminUser === login &&
+                                result.adminPass === pass
+                            ) {
+                                res.redirect('../users')
+                                session.username = login
+                            } else {
+                                res.redirect('../admin')
+                            }
+                        }
+                    }
+                )
+            })
+        })
+
         router.get('/users', (req, res) => {
             // Users page
 
@@ -48,9 +83,7 @@ db.initialize(
                         // Render user page
                         user: results,
                         title: 'Users',
-                        currentProfile: 'current',
-                        currentHome: 'none',
-                        currentPreference: 'none',
+                        username: req.session.username,
                     })
                 })
         })
