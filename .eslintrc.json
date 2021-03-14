@@ -12,6 +12,7 @@
     "rules": {
         "semi": ["error", "never"],
         "quotes": ["error", "single"],
-        "no-unused-vars": ["error", "never"]
+        "no-unused-vars": ["error", "never"],
+        "prefer-arrow-callback": ["warning", "always"]
     }
 }
