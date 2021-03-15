@@ -387,6 +387,13 @@ main article {
     flex-direction: column;
 }
 
+#adminPage section {
+    background-color: rgba(235, 235, 235, 0.856);
+    padding: 3em 4em;
+    border-radius: 2em;
+    box-shadow: 2px 2px 5px rgba(170, 170, 170, 0.836);
+}
+
 #adminPage section fieldset {
     outline: none;
     border: none;
