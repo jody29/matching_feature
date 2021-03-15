@@ -1,4 +1,4 @@
-# GameMatch
+# GameMatch :video_game:
 With this application, you can find other gamers to play with. Just fill in your favorite console and favorite game and we will find the best matches for you. After this, you will never have to play video games alone.
 
 ![Schermafbeelding 2021-03-15 om 12 57 40](https://user-images.githubusercontent.com/66092262/111150180-10e18f00-858e-11eb-92ad-0b7bb544ff52.png)
