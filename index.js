@@ -23,12 +23,10 @@ app.use(bodyParser.json())
 
 app.use(
     session({
-        cookie: { sameSite: false, secure: true },
         name: 'admin-session',
         secret: process.env.ULTRA_SECRET,
-        saveUninitialized: true,
+        saveUninitialized: false,
         resave: true,
-        userRole: 'admin',
     })
 )
 

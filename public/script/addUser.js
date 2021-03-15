@@ -1,5 +1,3 @@
-const newUser = document.querySelector('#newUser button')
-const userForm = document.querySelector('#addUser')
 const editUser = document.querySelectorAll('.edit')
 const user = document.querySelectorAll('.user')
 
@@ -9,20 +7,10 @@ editUser.forEach((element) => {
         let li = button.parentElement
         let section = li.parentElement
         let user = section.parentElement
-        let form = user.querySelector('form')
+        let form = user.querySelector('.editForm')
 
-        section.style.visibility = 'hidden'
+        section.style.display = 'none'
 
-        form.style.display = 'block'
+        form.style.display = 'flex'
     })
-})
-
-newUser.addEventListener('click', () => {
-    userForm.classList.toggle('showForm')
-
-    if (newUser.textContent === '+') {
-        newUser.textContent = 'x'
-    } else {
-        newUser.textContent = '+'
-    }
 })
