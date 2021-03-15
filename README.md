@@ -1,7 +1,7 @@
 # GameMatch
 With this application, you can find other gamers to play with. Just fill in your favorite console and favorite game and we will find the best matches for you. After this, you will never have to play video games alone.
 
-![Schermafbeelding 2021-03-14 om 01 37 12](https://user-images.githubusercontent.com/66092262/111053659-df6da400-8465-11eb-8111-b20d72eaff13.png)
+![Schermafbeelding 2021-03-15 om 12 57 40](https://user-images.githubusercontent.com/66092262/111150180-10e18f00-858e-11eb-92ad-0b7bb544ff52.png)
 
 ### How does it work?
 When you open the application, you will see a list of users. At the top right of your screen, you can see a fitler button. When pressing this filter button, you will get a preference form. In this preference form you can choose a console you want to filter on and you favorite game you want to filter on. When you filled in your preferences, you can click on the "SAVE PREFERENCES" button. This will only show the users that has the same console and game as your preference.
