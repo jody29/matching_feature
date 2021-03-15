@@ -9,6 +9,8 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const PORT = process.env.PORT || 8080
 const router = require('./route/router')
+const session = require('express-session')
+const { setegid } = require('process')
 
 // EJS setup
 app.set('view engine', 'ejs')
@@ -19,7 +21,16 @@ app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-// Use the router when on index page
+app.use(
+    session({
+        name: 'admin-session',
+        secret: process.env.ULTRA_SECRET,
+        saveUninitialized: false,
+        resave: true,
+    })
+)
+
+// Use the router when on any page
 app.use('/', router)
 
 // Express listens to PORT 8080

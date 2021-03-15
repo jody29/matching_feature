@@ -6,15 +6,16 @@ const session = require('express-session')
 
 // Database variabels
 const db = require('../model/db')
-const { ObjectID } = require('mongodb')
+const { ObjectID, MongoClient } = require('mongodb')
 const { ENOTEMPTY } = require('constants')
 const dbName = process.env.DB_NAME
 const collectionName = 'users'
+const adminCollection = 'admin'
 
 db.initialize(
     dbName,
     collectionName,
-    function (dbCollection) {
+    (dbCollection) => {
         // Initialize the database
 
         router.get('/', (req, res) => {
@@ -36,23 +37,91 @@ db.initialize(
                 })
         })
 
+        router.get('/admin', (req, res) => {
+            if (req.session.loggedIn) {
+                res.redirect('../users')
+            } else {
+                res.render('pages/admin', {
+                    title: 'Admin',
+                })
+            }
+        })
+
+        router.post(
+            '/adminLogin',
+            (req, res, next) => {
+                const login = req.body.adminUser
+                const pass = req.body.adminPass
+
+                db.initialize(dbName, adminCollection, (dbCollection) => {
+                    dbCollection.findOne(
+                        {
+                            $or: [{ adminUser: login }, { adminPass: pass }],
+                        },
+                        (err, result) => {
+                            if (login === '' || pass === '') {
+                                res.redirect('../admin')
+                            } else {
+                                if (
+                                    result.adminUser === login &&
+                                    result.adminPass === pass
+                                ) {
+                                    res.locals.username = login
+                                    next()
+                                } else {
+                                    res.redirect('../admin')
+                                }
+                            }
+                        }
+                    )
+                })
+            },
+            (req, res) => {
+                req.session.loggedIn = true
+                req.session.username = res.locals.username
+                console.log(req.session)
+                res.redirect('../users')
+            }
+        )
+
         router.get('/users', (req, res) => {
             // Users page
 
-            dbCollection
-                .find()
-                .toArray()
-                .then((results) => {
-                    // Get all data from database
-                    res.render('pages/users', {
-                        // Render user page
-                        user: results,
-                        title: 'Users',
-                        currentProfile: 'current',
-                        currentHome: 'none',
-                        currentPreference: 'none',
+            if (!req.session.loggedIn) {
+                res.redirect('../admin')
+            } else {
+                dbCollection
+                    .find()
+                    .toArray()
+                    .then((results) => {
+                        // Get all data from database
+                        res.render('pages/users', {
+                            // Render user page
+                            user: results,
+                            title: 'Users',
+                        })
                     })
-                })
+            }
+        })
+
+        router.post('/delete', (req, res) => {
+            dbCollection.deleteOne(
+                {
+                    _id: new ObjectID(req.body.id),
+                },
+                (err, result) => {
+                    if (err) throw err
+                    dbCollection.find().toArray((err, result) => {
+                        if (err) throw err
+                        res.redirect('../users')
+                    })
+                }
+            )
+        })
+
+        router.get('/logout', (req, res) => {
+            req.session.destroy((err) => {})
+            res.redirect('../admin')
         })
 
         router.post('/partials/addUserForm', (req, res) => {
@@ -67,12 +136,20 @@ db.initialize(
                 games: lowerGames,
             }
 
-            dbCollection.insertOne(newUser, (error) => {
-                // Insert newUser to database
-                if (error) throw error
-            })
+            if (
+                req.body.username === '' ||
+                req.body.chosenConsoles === '' ||
+                games === ''
+            ) {
+                res.redirect('../users')
+            } else {
+                dbCollection.insertOne(newUser, (error) => {
+                    // Insert newUser to database
+                    if (error) throw error
+                })
 
-            res.redirect('../users') // Redirect back to user page after insertion
+                res.redirect('../users') // Redirect back to user page after insertion
+            }
         })
 
         router.post('/updateUser', (req, res) => {

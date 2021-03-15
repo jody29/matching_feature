@@ -7,36 +7,44 @@
 
 <body>
     <header>
-        <%- include('../partials/header') %>
+        
     </header>
 
     <main>
+        <section class="header">
         <h1><%= title %></h1>
+        <a href="/logout"><img class="logOut" src="../img/logOut.png" alt=""></a>
+        </section>
         
-        <%- include('../partials/addUserForm') %>
+        
 
+        <article id="admin">
 
-        <section id="newUser">
-            <button>+</button>
-            </section>
+            
 
-        <article>
-
+            <section id="users">
             <% for(let i = 0; i < user.length; i++) {%>
                 <ul class="userCard">
                   
                 <section class="user">   
-                <li><%= user[i].username %> <button class="edit">Edit</button></li>
+                <li><%= user[i].username %> <button class="edit">Edit User</button> 
+                    <form action="/delete" method="POST">
+                    <input type="hidden" value="<%= user[i]._id %>" name="id">
+                    <button type="submit">Delete User</button>
+                    </form>
+                </li>
                 <li>Console: <%= user[i].chosenConsoles %></li>
                 <li>Games: <%= user[i].games %></li>
                 </section> 
 
                 <form action="/updateUser" method="POST" class="editForm">
 
+                    <section>
                     <input type="text" value="<%= user[i]._id %>" name="id">
                     <input type="text" value="<%= user[i].username %>" name="username">
                     <input type="text" value="<%= user[i].chosenConsoles %>" name="chosenConsoles">
                     <input type="text" value="<%= user[i].games %>" name="games">
+                    </section>
 
                     <input type="submit" value="SAVE">
                 
@@ -45,6 +53,11 @@
                 
                 </ul>
               <% } %>
+            </section>
+
+            <section id="addUserForm">
+                <%- include('../partials/addUserForm') %>
+            </section>
 
         </article>
         
